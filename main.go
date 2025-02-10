@@ -25,6 +25,7 @@ func main() {
 	encoding := createEncodingHuffman(allChars)
 	codes := encoding.coding()
 	totalBit := 0
+	fmt.Printf("char count(ratio) x code(bit) = total bit\n")
 	for _, c := range allChars {
 		var d string
 		if c.char == '\n' {
@@ -35,7 +36,7 @@ func main() {
 		code := codes[c.char]
 		bit := len(codes[c.char])
 		totalBit += c.count * bit
-		fmt.Printf("%s: %d(%.2f%%) x %s(%d bit) = %d bit\n", d, c.count, c.probability*100, code, bit, c.count*bit)
+		fmt.Printf("%s %d(%.2f%%) x %s(%d bit) = %d bit\n", d, c.count, c.probability*100, code, bit, c.count*bit)
 	}
 	fmt.Printf("total %d bit (%d byte)\n", totalBit, totalBit/8)
 }
